@@ -2,8 +2,6 @@
 
 namespace Drupal\Tests\media_source_url_formatter\Kernel;
 
-use org\bovigo\vfs\vfsStream;
-
 /**
  * @group media_source_url_formatter
  */
@@ -19,10 +17,12 @@ class FileUrlExtractorTest extends ExtractorTestBase {
     /** @var \Drupal\media\MediaInterface */
     $media = $this->generateMedia('catalogue.pdf', $media_type);
 
-    $this->assertSame(
-      vfsStream::url('drupal_root/sites/default/files/catalogue.pdf'),
-      $extractor->getUrl($media)
-    );
+    /** @var \Drupal\file\FileInterface */
+    $file = $media->field_media_file->first()->entity;
+
+    file_put_contents($file->getFileUri(), $this->randomMachineName());
+
+    $this->assertSame($file->createFileUrl(FALSE), $extractor->getUrl($media));
   }
 
 }
