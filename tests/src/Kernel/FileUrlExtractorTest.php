@@ -2,12 +2,10 @@
 
 namespace Drupal\Tests\media_source_url_formatter\Kernel;
 
-use Drupal\Tests\media\Kernel\MediaKernelTestBase;
-
 /**
  * @group media_source_url_formatter
  */
-class FileUrlExtractorTest extends MediaKernelTestBase {
+class FileUrlExtractorTest extends ExtractorTestBase {
 
   public function testFileUrlExtractor(): void {
     /** @var \Drupal\media_source_url_formatter\FileUrlExtractor */
