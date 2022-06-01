@@ -31,7 +31,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.3",
+        "php": ">=7.4",
         "drupal/core": "^9.3"
     },
     "require-dev": {
@@ -40,11 +40,14 @@
     },
     "config": {
         "platform": {
-            "php": "7.3"
+            "php": "7.4"
         },
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     },
     "scripts": {
         "phpcs": "phpcs",

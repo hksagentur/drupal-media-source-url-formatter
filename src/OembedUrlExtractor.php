@@ -32,15 +32,15 @@ class OembedUrlExtractor implements UrlExtractorInterface {
     // Some OEembed resource do not provide the URL as property but an HTML
     // snippet instead (e.g. the YouTube endpoint). In these cases try to
     // search for the corresponding URL within the HTML snippet.
-    $dom_document = $this->tryParseSnippet(
+    $html_document = $this->tryParseSnippet(
       $media_source->getMetadata($media, 'html')
     );
 
-    if (!$dom_document) {
+    if (!$html_document) {
       return NULL;
     }
 
-    return $this->extractUrlFromSnippet($dom_document);
+    return $this->extractUrlFromSnippet($html_document);
   }
 
   /**
@@ -69,7 +69,7 @@ class OembedUrlExtractor implements UrlExtractorInterface {
    * @return string|null
    *   The URL of the resource. NULL if no URL could be found.
    */
-  protected function extractUrlFromSnippet($document) {
+  protected function extractUrlFromSnippet(\DOMDocument $document) {
     foreach ($document->getElementsByTagName('iframe') as $node) {
       if ($attribute = $node->attributes->getNamedItem('src')) {
         return $attribute->nodeValue;

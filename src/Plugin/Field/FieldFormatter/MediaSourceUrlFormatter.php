@@ -3,11 +3,11 @@
 namespace Drupal\media_source_url_formatter\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\Plugin\Field\FieldFormatter\EntityReferenceFormatterBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\image\ImageStyleStorageInterface;
 use Drupal\media_source_url_formatter\UrlExtractorInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -55,8 +55,6 @@ class MediaSourceUrlFormatter extends EntityReferenceFormatterBase {
    *   The view mode.
    * @param array $third_party_settings
    *   Any third party settings settings.
-   * @param \Drupal\Core\Session\AccountInterface $current_user
-   *   The current user.
    * @param \Drupal\image\ImageStyleStorageInterface $image_style_storage
    *   The image style storage.
    * @param \Drupal\media_source_url_formatter\UrlExtractorInterface $url_extractor
@@ -70,7 +68,7 @@ class MediaSourceUrlFormatter extends EntityReferenceFormatterBase {
     $label,
     $view_mode,
     array $third_party_settings,
-    EntityStorageInterface $image_style_storage,
+    ImageStyleStorageInterface $image_style_storage,
     UrlExtractorInterface $url_extractor
   ) {
     parent::__construct(
@@ -116,7 +114,7 @@ class MediaSourceUrlFormatter extends EntityReferenceFormatterBase {
     return $target_type === 'media';
   }
 
-    /**
+  /**
    * {@inheritdoc}
    */
   public static function defaultSettings() {
@@ -169,7 +167,8 @@ class MediaSourceUrlFormatter extends EntityReferenceFormatterBase {
 
     if (!array_key_exists($image_style_name, $image_style_options)) {
       $summary[] = $this->t('Original file');
-    } else {
+    }
+    else {
       $summary[] = $this->t('Image style: @style', [
         '@style' => $image_style_options[$image_style_name],
       ]);
