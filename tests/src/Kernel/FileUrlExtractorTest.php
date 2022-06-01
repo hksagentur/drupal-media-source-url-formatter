@@ -16,11 +16,10 @@ class FileUrlExtractorTest extends ExtractorTestBase {
 
     /** @var \Drupal\media\MediaInterface */
     $media = $this->generateMedia('catalogue.pdf', $media_type);
+    $media->save();
 
     /** @var \Drupal\file\FileInterface */
     $file = $media->field_media_file->first()->entity;
-
-    file_put_contents($file->getFileUri(), $this->randomMachineName());
 
     $this->assertSame($file->createFileUrl(FALSE), $extractor->getUrl($media));
   }
