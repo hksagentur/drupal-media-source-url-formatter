@@ -73,7 +73,7 @@ jobs:
       - name: Run PHP CS
         run: |
           cd ~/drupal
-          vendor/bin/phpcs -s --report=checkstyle --standard=Drupal,DrupalPractice --extensions=inc,install,module,php,profile,test,theme,yml web/modules/contrib/${{ env.MODULE_NAME }} | cs2pr
+          vendor/bin/phpcs -s --report=checkstyle --standard=Drupal,DrupalPractice --extensions=inc,install,module,php,profile,test,theme,yml --ignore="tests/*" web/modules/contrib/${{ env.MODULE_NAME }} | cs2pr
 
       - name: Run PHPUnit tests
         env:
