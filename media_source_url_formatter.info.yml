@@ -1,0 +1,9 @@
+name: 'media_source_url_formatter'
+description: 'A custom field formatter that displays the URL of the resource referenced by a media entity.'
+type: module
+
+core_version_requirement: ^8 || ^9
+php: 7.3.x
+
+dependencies:
+  - drupal:media

@@ -1,0 +1,83 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        php-version: [7.4, 8.1]
+        drupal-version: [9.3]
+
+    name: PHP ${{ matrix.php-version }} - Drupal ${{ matrix.drupal-version }}
+
+    env:
+      MODULE_NAME: media_source_url_formatter
+      SIMPLETEST_DB: sqlite://sites/default/files/.ht.sqlite
+      SIMPLETEST_BASE_URL: http://localhost:8080
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
+          coverage: none
+          tools: cs2pr
+
+      - name: Setup problem matchers
+        run: |
+          echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+          echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+      - name: Setup Drupal
+        uses: bluehorndigital/setup-drupal@v1.0.3
+        with:
+          version: ${{ matrix.drupal-version }}
+          path: ~/drupal
+
+      - name: Setup dependencies
+        run: |
+          cd ~/drupal
+          composer require --dev drush/drush drupal/coder
+
+      - name: Setup module
+        run: |
+          cd ~/drupal
+          composer require drupal/${{ env.MODULE_NAME }} *@dev
+
+      - name: Install Drupal
+        run: |
+          cd ~/drupal
+          vendor/bin/drush site:install testing --yes --db-url=sqlite://web/sites/default/files/.ht.sqlite/dev
+
+      - name: Install module
+        run: |
+          cd ~/drupal
+          vendor/bin/drush pm:enable ${{ env.MODULE_NAME }}
+
+      - name: Run Drupal development server
+        run: |
+          cd ~/drupal
+          vendor/bin/drush runserver 8080 >/dev/null &
+
+      - name: Run PHP CS
+        run: |
+          cd ~/drupal
+          vendor/bin/phpcs -s --report=checkstyle --standard=Drupal,DrupalPractice --extensions=inc,install,module,php,profile,test,theme,yml web/modules/contrib/${{ env.MODULE_NAME }} | cs2pr
+
+      - name: Run PHPUnit tests
+        env:
+          SYMFONY_DEPRECATIONS_HELPER: disabled
+        run: |
+          cd ~/drupal
+          vendor/bin/phpunit --verbose --configuration web/core/phpunit.xml.dist --group ${{ env.MODULE_NAME }} web/modules/contrib/${{ env.MODULE_NAME }}

@@ -1,0 +1,15 @@
+version: 2
+updates:
+  - package-ecosystem: "composer"
+    directory: "/"
+    target-branch: "develop"
+    versioning-strategy: increase
+    schedule:
+      interval: "monthly"
+      timezone: "Europe/Berlin"
+    allow:
+      - dependency-type: "direct"
+    commit-message:
+      prefix: "chore:"
+    labels:
+      - "type: maintanance"

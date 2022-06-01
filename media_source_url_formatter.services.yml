@@ -1,0 +1,23 @@
+services:
+  media_source_url_formatter.media_url_extractor:
+    class: Drupal\media_source_url_formatter\MediaUrlExtractor
+    arguments: ['@module_handler']
+    tags:
+      - { name: service_collector, tag: media_source_url_extractor, call: addUrlExtractor }
+
+  media_source_url_formatter.oembed_url_extractor:
+    class: Drupal\media_source_url_formatter\OembedUrlExtractor
+    tags:
+      - { name: media_source_url_extractor, priority: 0 }
+
+  media_source_url_formatter.file_url_extractor:
+    class: Drupal\media_source_url_formatter\FileUrlExtractor
+    arguments: ['@entity_type.manager']
+    tags:
+      - { name: media_source_url_extractor, priority: 0 }
+
+  media_source_url_formatter.image_url_extractor:
+    class: Drupal\media_source_url_formatter\ImageUrlExtractor
+    arguments: ['@entity_type.manager']
+    tags:
+      - { name: media_source_url_extractor, priority: 10 }

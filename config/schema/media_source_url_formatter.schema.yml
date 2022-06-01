@@ -1,0 +1,7 @@
+field.formatter.settings.media_source_url:
+  type: mapping
+  label: 'Media source URL formatter settings'
+  mapping:
+    image_style:
+      type: string
+      label: 'Image style'

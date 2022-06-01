@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * @file
+ * Provide user help.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function media_source_url_formatter_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.media_source_url_formatter':
+      $output = '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module provides a URL formatter for a media reference fields. This can be especially usefully in cases where the URL is used in styling hooks or passed to a custom partial from a pattern library.') . '</p>';
+      $output .= '<h3>' . t('Usage') . '</h3>';
+      $output .= '<ol>';
+      $output .= '<li>' . t('Add a media reference field to the entity type of your choice.') . '</li>';
+      $output .= '<li>' . t('Go to "Manage display" settings page of the corresponding entity type.') . '</li>';
+      $output .= '<li>' . t('Select "Media Source URL" as the formatter of the previously created field.') . '</li>';
+      $output .= '<li>' . t('Optionally select the image style to apply to media entities that reference an image its source entity.') . '</li>';
+      $output .= '</ol>';
+      return $output;
+  }
+}
