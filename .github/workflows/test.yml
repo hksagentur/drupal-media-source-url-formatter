@@ -80,4 +80,5 @@ jobs:
           SYMFONY_DEPRECATIONS_HELPER: disabled
         run: |
           cd ~/drupal
+          ls web/core/
           vendor/bin/phpunit --verbose --configuration web/core/phpunit.xml.dist --group ${{ env.MODULE_NAME }} web/modules/contrib/${{ env.MODULE_NAME }}

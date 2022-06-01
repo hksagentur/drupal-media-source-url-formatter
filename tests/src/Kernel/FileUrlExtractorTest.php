@@ -30,7 +30,7 @@ class FileUrlExtractorTest extends AbstractExtractorTestCase {
     ]);
     $media->save();
 
-    self::assertSame($file->createFileUrl(FALSE), $extractor->getUrl($media));
+    $this->assertSame($file->createFileUrl(FALSE), $extractor->getUrl($media));
   }
 
 }

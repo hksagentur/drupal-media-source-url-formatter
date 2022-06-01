@@ -27,7 +27,7 @@ abstract class AbstractExtractorTestCase extends KernelTestBase {
   public function setUp(): void {
     parent::setUp();
 
-    $this->installSchema('file', 'file_usage');
+    $this->installSchema('file', 'file_usage', 'media_source_url_formatter');
 
     $this->installEntitySchema('file');
     $this->installEntitySchema('media');
