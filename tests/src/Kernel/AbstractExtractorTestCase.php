@@ -19,6 +19,9 @@ abstract class AbstractExtractorTestCase extends KernelTestBase {
     'media_source_url_formatter',
     'media',
     'file',
+    'image',
+    'user',
+    'field',
   ];
 
   /**
