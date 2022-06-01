@@ -14,13 +14,6 @@ abstract class ExtractorTestBase extends MediaKernelTestBase {
    */
   public static $modules = [
     'media_source_url_formatter',
-    'media',
-    'media_test_source',
-    'image',
-    'user',
-    'field',
-    'system',
-    'file',
   ];
 
 }
