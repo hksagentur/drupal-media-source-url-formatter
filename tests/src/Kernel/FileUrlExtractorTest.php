@@ -16,7 +16,6 @@ class FileUrlExtractorTest extends ExtractorTestBase {
 
     /** @var \Drupal\media\MediaInterface */
     $media = $this->generateMedia('catalogue.pdf', $media_type);
-    $media->save();
 
     /** @var \Drupal\file\FileInterface */
     $file = $media->field_media_file->first()->entity;

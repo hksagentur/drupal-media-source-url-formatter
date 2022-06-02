@@ -39,7 +39,7 @@ class ImageUrlExtractor extends FileUrlExtractor {
     $image_style = $options['image_style'] ?? NULL;
 
     if (!$image_style || !$image_style->supportsUri($file_uri)) {
-      return file_create_url($file_uri);
+      return $file->createFileUrl(FALSE);
     }
 
     return $image_style->buildUrl($file_uri);
