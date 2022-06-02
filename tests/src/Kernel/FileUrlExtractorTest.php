@@ -15,10 +15,10 @@ class FileUrlExtractorTest extends ExtractorTestBase {
     $media_type = $this->createMediaType('file');
 
     /** @var \Drupal\media\MediaInterface */
-    $media = $this->generateMedia('catalogue.pdf', $media_type);
+    $media = $this->generateMedia('foo.txt', $media_type);
 
     /** @var \Drupal\file\FileInterface */
-    $file = $media->field_media_file->first()->entity;
+    $file = $media->field_media_file->entity;
 
     $this->assertSame($file->createFileUrl(FALSE), $extractor->getUrl($media));
   }
