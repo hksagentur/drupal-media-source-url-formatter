@@ -17,10 +17,10 @@
             "role": "Co-Maintainer"
         }
     ],
-    "homepage": "https://github.com/hksagentur/drupal-media-file-url-formatter",
+    "homepage": "https://github.com/hksagentur/drupal-media-source-url-formatter",
     "support": {
-        "issues": "https://github.com/hksagentur/drupal-media-file-url-formatter/issues",
-        "source": "https://github.com/hksagentur/drupal-media-file-url-formatter.git"
+        "issues": "https://github.com/hksagentur/drupal-media-source-url-formatter/issues",
+        "source": "https://github.com/hksagentur/drupal-media-source-url-formatter.git"
     },
     "repositories": [
         {
