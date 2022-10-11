@@ -40,7 +40,7 @@ jobs:
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Setup Drupal
-        uses: bluehorndigital/setup-drupal@v1.0.3
+        uses: bluehorndigital/setup-drupal@v1.0.4
         with:
           version: ${{ matrix.drupal-version }}
           path: ~/drupal
