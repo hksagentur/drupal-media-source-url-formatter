@@ -44,7 +44,7 @@ jobs:
         with:
           version: ${{ matrix.drupal-version }}
           path: ~/drupal
-          allow_plugins: 'drupal/core-composer-scaffold drupal/core-project-message'
+          allow_plugins: drupal/core-composer-scaffold, drupal/core-project-message
 
       - name: Setup dependencies
         run: |
