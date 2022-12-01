@@ -14,10 +14,10 @@
  *   The media entity referencing the resource.
  * @param array $context
  *   An associative array containing the following context information:
- *   - 'extractor': The URL extractor selected for the current media entity.
+ *   - 'generator': The URL generator selected for the current media entity.
  *   - 'media': The media entity referencing the resource.
  *   - 'options': An associative array of additional options provided to the
- *      URL extractor.
+ *      URL generator.
  */
 function hook_media_source_url_alter(string &$resource_url, \Drupal\media\MediaInterface $media, array &$context) {
   $resource_url = preg_replace('/^http:\/\//', 'https://', $resource_url);

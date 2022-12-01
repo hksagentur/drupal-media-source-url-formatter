@@ -7,9 +7,9 @@ use Drupal\media\MediaInterface;
 use Drupal\media\Plugin\media\Source\OEmbedInterface;
 
 /**
- * Extract the URL of an OEmbed resource referenced by a media entity.
+ * Generate the URL of an OEmbed resource referenced by a media entity.
  */
-class OembedUrlExtractor implements UrlExtractorInterface {
+class OembedUrlGenerator implements UrlGeneratorInterface {
 
   /**
    * {@inheritDoc}
@@ -21,7 +21,7 @@ class OembedUrlExtractor implements UrlExtractorInterface {
   /**
    * {@inheritDoc}
    */
-  public function getUrl(MediaInterface $media, array $options = []) {
+  public function generate(MediaInterface $media, array $options = []) {
     $media_source = $media->getSource();
     $resource_url = $media_source->getMetadata($media, 'url');
 
@@ -53,11 +53,7 @@ class OembedUrlExtractor implements UrlExtractorInterface {
    *   A \DOMDocument that represents the loaded HTML snippet.
    */
   protected function tryParseSnippet($markup) {
-    if (empty($markup)) {
-      return NULL;
-    }
-
-    return Html::load($markup);
+    return empty($markup) ? NULL : Html::load($markup);
   }
 
   /**

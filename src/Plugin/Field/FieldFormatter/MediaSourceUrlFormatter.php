@@ -8,7 +8,7 @@ use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\Plugin\Field\FieldFormatter\EntityReferenceFormatterBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\image\ImageStyleStorageInterface;
-use Drupal\media_source_url_formatter\UrlExtractorInterface;
+use Drupal\media_source_url_formatter\UrlGeneratorInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -32,11 +32,11 @@ class MediaSourceUrlFormatter extends EntityReferenceFormatterBase {
   protected $imageStyleStorage;
 
   /**
-   * The URL extractor.
+   * The URL generator.
    *
-   * @var \Drupal\media_source_url_formatter\UrlExtractorInterface
+   * @var \Drupal\media_source_url_formatter\UrlGeneratorInterface
    */
-  protected $urlExtractor;
+  protected $urlGenerator;
 
   /**
    * Create a new instance of the MediaSourceUrlFormatter class.
@@ -57,8 +57,8 @@ class MediaSourceUrlFormatter extends EntityReferenceFormatterBase {
    *   Any third party settings settings.
    * @param \Drupal\image\ImageStyleStorageInterface $image_style_storage
    *   The image style storage.
-   * @param \Drupal\media_source_url_formatter\UrlExtractorInterface $url_extractor
-   *   The URL extractor.
+   * @param \Drupal\media_source_url_formatter\UrlGeneratorInterface $url_generator
+   *   The URL generator.
    */
   public function __construct(
     $plugin_id,
@@ -69,7 +69,7 @@ class MediaSourceUrlFormatter extends EntityReferenceFormatterBase {
     $view_mode,
     array $third_party_settings,
     ImageStyleStorageInterface $image_style_storage,
-    UrlExtractorInterface $url_extractor
+    UrlGeneratorInterface $url_generator
   ) {
     parent::__construct(
       $plugin_id,
@@ -82,7 +82,7 @@ class MediaSourceUrlFormatter extends EntityReferenceFormatterBase {
     );
 
     $this->imageStyleStorage = $image_style_storage;
-    $this->urlExtractor = $url_extractor;
+    $this->urlGenerator = $url_generator;
   }
 
   /**
@@ -99,7 +99,7 @@ class MediaSourceUrlFormatter extends EntityReferenceFormatterBase {
       $configuration['third_party_settings'],
       $container->get('current_user'),
       $container->get('entity_type.manager')->getStorage('image_style'),
-      $container->get('media_source_url_formatter.media_url_extractor')
+      $container->get('media_source_url_formatter.media_url_generator')
     );
   }
 
@@ -192,7 +192,7 @@ class MediaSourceUrlFormatter extends EntityReferenceFormatterBase {
 
     /** @var \Drupal\media\MediaInterface $media */
     foreach ($this->getEntitiesToView($items, $langcode) as $delta => $media) {
-      $resource_url = $this->urlExtractor->getUrl($media, ['image_style' => $image_style]);
+      $resource_url = $this->urlGenerator->generate($media, ['image_style' => $image_style]);
 
       if (!$resource_url) {
         continue;

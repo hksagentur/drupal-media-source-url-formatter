@@ -6,9 +6,9 @@ use Drupal\media\MediaInterface;
 use Drupal\media\Plugin\media\Source\Image;
 
 /**
- * Extract the URL of an image referenced by a media entity.
+ * Get the URL of an image referenced by a media entity.
  */
-class ImageUrlExtractor extends FileUrlExtractor {
+class ImageUrlGenerator extends FileUrlGenerator {
 
   /**
    * {@inheritDoc}
@@ -20,7 +20,7 @@ class ImageUrlExtractor extends FileUrlExtractor {
   /**
    * {@inheritDoc}
    */
-  public function getUrl(MediaInterface $media, array $options = []) {
+  public function generate(MediaInterface $media, array $options = []) {
     $file_id = $media->getSource()->getSourceFieldValue($media);
 
     if (empty($file_id)) {

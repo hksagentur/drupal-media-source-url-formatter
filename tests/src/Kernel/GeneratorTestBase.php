@@ -10,9 +10,9 @@ use Drupal\media\MediaTypeInterface;
 use Drupal\user\Entity\User;
 
 /**
- * A base class for URL extractor tests.
+ * A base class for URL generator tests.
  */
-abstract class ExtractorTestBase extends KernelTestBase {
+abstract class GeneratorTestBase extends KernelTestBase {
 
   use MediaTypeCreationTrait;
 

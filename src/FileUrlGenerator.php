@@ -7,9 +7,9 @@ use Drupal\media\MediaInterface;
 use Drupal\media\Plugin\media\Source\File;
 
 /**
- * Extract the URL of a generic file referenced by a media entity.
+ * Get the URL of a generic file referenced by a media entity.
  */
-class FileUrlExtractor implements UrlExtractorInterface {
+class FileUrlGenerator implements UrlGeneratorInterface {
 
   /**
    * The entity type manager.
@@ -19,7 +19,7 @@ class FileUrlExtractor implements UrlExtractorInterface {
   protected $entityTypeManager;
 
   /**
-   * Create a new instance of the FileUrlExtractor.
+   * Create a new instance of the FileUrlGenerator.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
@@ -38,7 +38,7 @@ class FileUrlExtractor implements UrlExtractorInterface {
   /**
    * {@inheritDoc}
    */
-  public function getUrl(MediaInterface $media, array $options = []) {
+  public function generate(MediaInterface $media, array $options = []) {
     $file_id = $media->getSource()->getSourceFieldValue($media);
 
     if (empty($file_id)) {

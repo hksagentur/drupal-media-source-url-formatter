@@ -1,23 +1,23 @@
 services:
-  media_source_url_formatter.media_url_extractor:
-    class: Drupal\media_source_url_formatter\MediaUrlExtractor
+  media_source_url_formatter.media_url_generator:
+    class: Drupal\media_source_url_formatter\MediaUrlGenerator
     arguments: ['@module_handler']
     tags:
-      - { name: service_collector, tag: media_source_url_extractor, call: addUrlExtractor }
+      - { name: service_collector, tag: media_source_url_generator, call: addGenerator }
 
-  media_source_url_formatter.oembed_url_extractor:
-    class: Drupal\media_source_url_formatter\OembedUrlExtractor
+  media_source_url_formatter.oembed_url_generator:
+    class: Drupal\media_source_url_formatter\OembedUrlGenerator
     tags:
-      - { name: media_source_url_extractor, priority: 0 }
+      - { name: media_source_url_generator, priority: 0 }
 
-  media_source_url_formatter.file_url_extractor:
-    class: Drupal\media_source_url_formatter\FileUrlExtractor
+  media_source_url_formatter.file_url_generator:
+    class: Drupal\media_source_url_formatter\FileUrlGenerator
     arguments: ['@entity_type.manager']
     tags:
-      - { name: media_source_url_extractor, priority: 0 }
+      - { name: media_source_url_generator, priority: 0 }
 
-  media_source_url_formatter.image_url_extractor:
-    class: Drupal\media_source_url_formatter\ImageUrlExtractor
+  media_source_url_formatter.image_url_generator:
+    class: Drupal\media_source_url_formatter\ImageUrlGenerator
     arguments: ['@entity_type.manager']
     tags:
-      - { name: media_source_url_extractor, priority: 10 }
+      - { name: media_source_url_generator, priority: 10 }
