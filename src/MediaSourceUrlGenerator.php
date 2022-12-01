@@ -8,7 +8,7 @@ use Drupal\media\MediaInterface;
 /**
  * Get the URL of the resource referenced by a media entity.
  */
-class MediaUrlGenerator implements UrlGeneratorInterface {
+class MediaSourceUrlGenerator implements UrlGeneratorInterface {
 
   /**
    * The module handler.
@@ -32,7 +32,7 @@ class MediaUrlGenerator implements UrlGeneratorInterface {
   protected $sortedGenerators;
 
   /**
-   * Create a new instance of the MediaUrlGenerator.
+   * Create a new instance of the MediaSourceUrlGenerator.
    *
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
    *   The module handler.

@@ -97,9 +97,8 @@ class MediaSourceUrlFormatter extends EntityReferenceFormatterBase {
       $configuration['label'],
       $configuration['view_mode'],
       $configuration['third_party_settings'],
-      $container->get('current_user'),
       $container->get('entity_type.manager')->getStorage('image_style'),
-      $container->get('media_source_url_formatter.media_url_generator')
+      $container->get('media_source_url_formatter.media_source_url_generator')
     );
   }
 

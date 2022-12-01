@@ -1,6 +1,6 @@
 services:
-  media_source_url_formatter.media_url_generator:
-    class: Drupal\media_source_url_formatter\MediaUrlGenerator
+  media_source_url_formatter.media_source_url_generator:
+    class: Drupal\media_source_url_formatter\MediaSourceUrlGenerator
     arguments: ['@module_handler']
     tags:
       - { name: service_collector, tag: media_source_url_generator, call: addGenerator }
