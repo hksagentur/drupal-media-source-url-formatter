@@ -25,7 +25,7 @@ class OembedUrlGenerator implements UrlGeneratorInterface {
     $media_source = $media->getSource();
     $resource_url = $media_source->getMetadata($media, 'url');
 
-    if (!$resource_url) {
+    if ($resource_url) {
       return $resource_url;
     }
 

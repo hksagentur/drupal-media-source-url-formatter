@@ -161,7 +161,7 @@ class MediaSourceUrlFormatter extends EntityReferenceFormatterBase {
   public function settingsSummary() {
     $summary = parent::settingsSummary();
 
-    $image_style_name = $this->getSettings('image_style');
+    $image_style_name = $this->getSetting('image_style');
     $image_style_options = image_style_options(FALSE);
 
     if (!array_key_exists($image_style_name, $image_style_options)) {
