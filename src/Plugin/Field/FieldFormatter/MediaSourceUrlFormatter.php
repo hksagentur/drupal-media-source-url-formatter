@@ -69,7 +69,7 @@ class MediaSourceUrlFormatter extends EntityReferenceFormatterBase {
     $view_mode,
     array $third_party_settings,
     ImageStyleStorageInterface $image_style_storage,
-    UrlGeneratorInterface $url_generator
+    UrlGeneratorInterface $url_generator,
   ) {
     parent::__construct(
       $plugin_id,
