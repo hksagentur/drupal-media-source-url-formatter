@@ -2,13 +2,21 @@ version: 2
 updates:
   - package-ecosystem: "composer"
     directory: "/"
-    target-branch: "develop"
     versioning-strategy: increase
     schedule:
       interval: "monthly"
       timezone: "Europe/Berlin"
     allow:
       - dependency-type: "direct"
+    commit-message:
+      prefix: "chore:"
+    labels:
+      - "type: maintanance"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+      timezone: "Europe/Berlin"
     commit-message:
       prefix: "chore:"
     labels:
