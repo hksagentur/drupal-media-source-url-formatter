@@ -13,7 +13,7 @@ jobs:
       fail-fast: true
       matrix:
         php-version: [8.1, 8.2]
-        drupal-version: [9.4, 10.2]
+        drupal-version: ['^9.4', '^10.2']
 
     name: PHP ${{ matrix.php-version }} - Drupal ${{ matrix.drupal-version }}
 
@@ -44,7 +44,7 @@ jobs:
         with:
           version: ${{ matrix.drupal-version }}
           path: ~/drupal
-          allow_plugins: drupal/core-composer-scaffold, drupal/core-project-message
+          allow_plugins: composer/installers phpstan/extension-installer dealerdirect/phpcodesniffer-composer-installer
 
       - name: Setup dependencies
         run: |
