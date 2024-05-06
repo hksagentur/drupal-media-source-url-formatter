@@ -13,7 +13,7 @@ jobs:
       fail-fast: true
       matrix:
         php-version: ['8.1']
-        drupal-version: ['^9.4', '^10.2']
+        drupal-version: ['^10.2']
 
     name: PHP ${{ matrix.php-version }} - Drupal ${{ matrix.drupal-version }}
 
