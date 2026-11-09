@@ -47,7 +47,7 @@ class FileUrlGenerator implements UrlGeneratorInterface {
 
     $file = $this->loadFile($file_id);
 
-    if (empty($file_id)) {
+    if (empty($file)) {
       return NULL;
     }
 
