@@ -2,7 +2,7 @@ name: 'media_source_url_formatter'
 description: 'A custom field formatter that displays the URL of the resource referenced by a media entity.'
 type: module
 
-core_version_requirement: ^9 || ^10
+core_version_requirement: ^10.3 || ^11
 php: 8.1
 
 dependencies:
